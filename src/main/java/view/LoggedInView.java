@@ -52,7 +52,19 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         changePassword = new JButton("Change Password");
         buttons.add(changePassword);
 
-        logOut.addActionListener(this);
+        logOut.addActionListener(
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                evt -> {
+                    if (evt.getSource().equals(logOut)) {
+                        final LoggedInState currentState = loggedInViewModel.getState();
+
+                        this.logoutController.execute(
+                        );
+                    }
+                }
+        );
+
+
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
